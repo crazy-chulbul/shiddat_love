@@ -947,119 +947,43 @@ cutCakeButton.addEventListener("click", () => {
     }, 8000);
 
 });
-// // =========================
-// // BIRTHDAY MUSIC - 2 SONGS
-// // =========================
-
-// const music =
-//     document.getElementById("birthday-music");
-
-// const secondMusic =
-//     document.getElementById("second-music");
-
-// const musicButton =
-//     document.getElementById("music-btn");
-
-
-// // कौन सा song अभी चल रहा है
-// let currentMusic = music;
-
-
-// // MUSIC BUTTON
-
-// musicButton.addEventListener("click", async () => {
-
-//     try {
-
-//         if (currentMusic.paused) {
-
-//             await currentMusic.play();
-
-//             musicButton.textContent =
-//                 "🔊 Music OFF";
-
-//         } else {
-
-//             currentMusic.pause();
-
-//             musicButton.textContent =
-//                 "🎵 Music ON";
-
-//         }
-
-//     } catch (error) {
-
-//         console.log("Music error:", error);
-
-//     }
-
-// });
-
-
-// // =========================
-// // SONG 1 FINISH → SONG 2
-// // =========================
-
-// music.addEventListener("ended", () => {
-
-//     currentMusic = secondMusic;
-
-//     secondMusic.play();
-
-// });
-
-
-// // =========================
-// // SONG 2 FINISH → SONG 1
-// // =========================
-
-// secondMusic.addEventListener("ended", () => {
-
-//     currentMusic = music;
-
-//     music.currentTime = 0;
-
-//     music.play();
-
-// });
-
-
-
-
 // =========================
 // BIRTHDAY MUSIC - 2 SONGS
 // =========================
 
-const music = document.getElementById("birthday-music");
-const musicButton = document.getElementById("music-btn");
+const music =
+    document.getElementById("birthday-music");
 
-const songs = [
-    music.src,
-    "songs/SECOND-SONG.mp3"
-];
+const secondMusic =
+    document.getElementById("second-music");
 
-let currentSongIndex = 0;
+const musicButton =
+    document.getElementById("music-btn");
 
 
-// =========================
+// कौन सा song अभी चल रहा है
+let currentMusic = music;
+
+
 // MUSIC BUTTON
-// =========================
 
 musicButton.addEventListener("click", async () => {
 
     try {
 
-        if (music.paused) {
+        if (currentMusic.paused) {
 
-            await music.play();
+            await currentMusic.play();
 
-            musicButton.textContent = "🔊 Music OFF";
+            musicButton.textContent =
+                "🔊 Music OFF";
 
         } else {
 
-            music.pause();
+            currentMusic.pause();
 
-            musicButton.textContent = "🎵 Music ON";
+            musicButton.textContent =
+                "🎵 Music ON";
 
         }
 
@@ -1073,35 +997,36 @@ musicButton.addEventListener("click", async () => {
 
 
 // =========================
-// SONG FINISH → NEXT SONG
+// SONG 1 FINISH → SONG 2
 // =========================
 
-music.addEventListener("ended", async () => {
+music.addEventListener("ended", () => {
 
-    currentSongIndex++;
+    currentMusic = secondMusic;
 
-    // Agar dono songs complete ho gaye
-    if (currentSongIndex >= songs.length) {
-        currentSongIndex = 0;
-    }
+    secondMusic.play();
 
-    music.src = songs[currentSongIndex];
+});
+
+
+// =========================
+// SONG 2 FINISH → SONG 1
+// =========================
+
+secondMusic.addEventListener("ended", () => {
+
+    currentMusic = music;
 
     music.currentTime = 0;
 
-    try {
-
-        await music.play();
-
-        musicButton.textContent = "🔊 Music OFF";
-
-    } catch (error) {
-
-        console.log("Next song autoplay blocked:", error);
-
-    }
+    music.play();
 
 });
+
+
+
+
+
 
 // =========================
 // VIDEO + MUSIC CONTROL
