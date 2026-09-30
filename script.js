@@ -1046,14 +1046,17 @@ music.addEventListener("ended", async () => {
 // SONG 2 FINISH → SONG 1
 // =========================
 
-secondMusic.addEventListener("ended", () => {
+music.addEventListener("ended", () => {
+    currentMusic = secondMusic;
+    secondMusic.currentTime = 0;
 
-    currentMusic = music;
-
-    music.currentTime = 0;
-
-    music.play();
-
+    secondMusic.play()
+        .then(() => {
+            musicButton.textContent = "🔊 Music OFF";
+        })
+        .catch(error => {
+            console.log("Song 2 error:", error);
+        });
 });
 
 
