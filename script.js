@@ -949,85 +949,6 @@ cutCakeButton.addEventListener("click", () => {
 });
 
 
-// =========================
-// BIRTHDAY MUSIC - 2 SONGS
-// =========================
-
-const music =
-    document.getElementById("birthday-music");
-
-const secondMusic =
-    document.getElementById("second-music");
-
-const musicButton =
-    document.getElementById("music-btn");
-
-let currentMusic = music;
-
-
-// =========================
-// MUSIC BUTTON
-// =========================
-
-musicButton.addEventListener("click", async () => {
-
-    try {
-
-        if (currentMusic.paused) {
-
-            await currentMusic.play();
-
-            musicButton.textContent =
-                "🔊 Music OFF";
-
-        } else {
-
-            currentMusic.pause();
-
-            musicButton.textContent =
-                "🎵 Music ON";
-
-        }
-
-    } catch (error) {
-
-        console.log("Music error:", error);
-
-    }
-
-});
-
-
-// =========================
-// SONG 1 → SONG 2
-// =========================
-
-music.addEventListener("ended", () => {
-
-    currentMusic = secondMusic;
-
-    secondMusic.currentTime = 0;
-
-    secondMusic.play()
-        .then(() => {
-
-            musicButton.textContent =
-                "🔊 Music OFF";
-
-        })
-        .catch((error) => {
-
-            console.log(
-                "Song 2 autoplay blocked:",
-                error
-            );
-
-            musicButton.textContent =
-                "▶️ Tap for Song 2";
-
-        });
-
-});
 
 
 // =========================
@@ -1149,7 +1070,6 @@ const loadingScreen =
 
 const enterText =
     document.querySelector(".enter-text");
-const enterText = document.querySelector(".enter-text");
 
 enterText.addEventListener("click", () => {
 
