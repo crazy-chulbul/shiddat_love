@@ -1000,28 +1000,28 @@ musicButton.addEventListener("click", async () => {
 // SONG 1 FINISH → SONG 2
 // =========================
 
-// music.addEventListener("ended", () => {
-
-//     currentMusic = secondMusic;
-
-//     secondMusic.play();
-
-// });
-
-
-
-
-
-
-
 music.addEventListener("ended", () => {
-    music.src = "song2.mp3";
-    music.currentTime = 0;
 
-    music.play().catch(error => {
-        console.log("Song 2 autoplay blocked:", error);
-    });
+    currentMusic = secondMusic;
+
+    secondMusic.play();
+
 });
+
+
+
+
+
+
+
+// music.addEventListener("ended", () => {
+//     music.src = "song2.mp3";
+//     music.currentTime = 0;
+
+//     music.play().catch(error => {
+//         console.log("Song 2 autoplay blocked:", error);
+//     });
+// });
 
 
 // =========================
