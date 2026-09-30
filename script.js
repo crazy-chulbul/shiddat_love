@@ -966,9 +966,10 @@ const musicButton =
 
 let currentMusic = music;
 
-// Song 1 + Song 2 combined file
+// Combined Song 1 + Song 2
 music.src = "birthday-mix.mp3";
 music.loop = true;
+music.preload = "auto";
 
 
 // =========================
@@ -1003,23 +1004,22 @@ musicButton.addEventListener("click", async () => {
 
 });
 
+
 // =========================
 // VIDEO + MUSIC CONTROL
 // =========================
 
-const allVideos = document.querySelectorAll("video");
+const allVideos =
+    document.querySelectorAll("video");
 
 allVideos.forEach((video) => {
 
     video.addEventListener("play", () => {
 
-        // Background music pause
         if (!currentMusic.paused) {
             currentMusic.pause();
         }
 
-
-        // Other videos pause
         allVideos.forEach((otherVideo) => {
 
             if (otherVideo !== video) {
@@ -1033,7 +1033,6 @@ allVideos.forEach((video) => {
 
     video.addEventListener("pause", () => {
 
-        // Check: koi aur video chal raha hai ya nahi
         const anotherVideoPlaying =
             Array.from(allVideos).some(
                 (otherVideo) =>
@@ -1041,8 +1040,6 @@ allVideos.forEach((video) => {
                     !otherVideo.paused
             );
 
-
-        // Agar koi video nahi chal raha to music resume
         if (!anotherVideoPlaying) {
 
             currentMusic.play()
@@ -1061,6 +1058,8 @@ allVideos.forEach((video) => {
     });
 
 });
+
+
 // =========================
 // LOADING SCREEN + AUTO MUSIC
 // =========================
@@ -1071,32 +1070,34 @@ const loadingScreen =
 const enterText =
     document.querySelector(".enter-text");
 
-enterText.addEventListener("click", () => {
+enterText.addEventListener("click", async () => {
 
     window.scrollTo({
         top: 0,
         behavior: "instant"
     });
 
-    // Music button immediately show
+    // Music button show
     musicButton.style.display = "block";
 
-    // Start combined music
-    music.play()
-        .then(() => {
+    // Reload the new music source
+    music.load();
 
-            musicButton.textContent =
-                "🔊 Music OFF";
+    try {
 
-        })
-        .catch(error => {
+        await music.play();
 
-            console.log("Music error:", error);
+        musicButton.textContent =
+            "🔊 Music OFF";
 
-            musicButton.textContent =
-                "🎵 Music ON";
+    } catch (error) {
 
-        });
+        console.log("Music error:", error);
+
+        musicButton.textContent =
+            "🎵 Music ON";
+
+    }
 
     // Hide loading screen
     loadingScreen.style.opacity = "0";
@@ -1108,7 +1109,6 @@ enterText.addEventListener("click", () => {
     }, 500);
 
 }, { once: true });
-
 // =========================
 // FIREWORKS
 // =========================
