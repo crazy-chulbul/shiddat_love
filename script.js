@@ -1033,31 +1033,52 @@ music.addEventListener("ended", () => {
 // =========================
 // SONG 2 → SONG 1
 // =========================
+// =========================
+// BIRTHDAY MUSIC
+// =========================
 
-secondMusic.addEventListener("ended", () => {
+const music =
+    document.getElementById("birthday-music");
 
-    currentMusic = music;
+const musicButton =
+    document.getElementById("music-btn");
 
-    music.currentTime = 0;
+let currentMusic = music;
 
-    music.play()
-        .then(() => {
+// Song 1 + Song 2 combined file
+music.src = "birthday-mix.mp3";
+music.loop = true;
+
+
+// =========================
+// MUSIC BUTTON
+// =========================
+
+musicButton.addEventListener("click", async () => {
+
+    try {
+
+        if (music.paused) {
+
+            await music.play();
 
             musicButton.textContent =
                 "🔊 Music OFF";
 
-        })
-        .catch((error) => {
+        } else {
 
-            console.log(
-                "Song 1 autoplay blocked:",
-                error
-            );
+            music.pause();
 
             musicButton.textContent =
-                "▶️ Tap for Song 1";
+                "🎵 Music ON";
 
-        });
+        }
+
+    } catch (error) {
+
+        console.log("Music error:", error);
+
+    }
 
 });
 
