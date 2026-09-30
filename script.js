@@ -1000,12 +1000,30 @@ musicButton.addEventListener("click", async () => {
 // SONG 1 FINISH → SONG 2
 // =========================
 
-music.addEventListener("ended", () => {
+// music.addEventListener("ended", () => {
 
+//     currentMusic = secondMusic;
+
+//     secondMusic.play();
+
+// });
+
+
+
+
+
+
+
+
+
+music.addEventListener("ended", async () => {
     currentMusic = secondMusic;
 
-    secondMusic.play();
-
+    try {
+        await secondMusic.play();
+    } catch (error) {
+        console.log("Song 2 autoplay blocked:", error);
+    }
 });
 
 
