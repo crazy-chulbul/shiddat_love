@@ -1078,25 +1078,36 @@ enterText.addEventListener("click", () => {
         behavior: "instant"
     });
 
-    // Music play
+    // Music button immediately show
+    musicButton.style.display = "block";
+
+    // Start combined music
     music.play()
         .then(() => {
-            musicButton.style.display = "block";
-            musicButton.textContent = "🔊 Music OFF";
+
+            musicButton.textContent =
+                "🔊 Music OFF";
+
         })
         .catch(error => {
+
             console.log("Music error:", error);
+
+            musicButton.textContent =
+                "🎵 Music ON";
+
         });
 
-    // Loading screen hide
+    // Hide loading screen
     loadingScreen.style.opacity = "0";
 
     setTimeout(() => {
+
         loadingScreen.style.display = "none";
+
     }, 500);
 
 }, { once: true });
-// 
 
 // =========================
 // FIREWORKS
