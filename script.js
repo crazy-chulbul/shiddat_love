@@ -1813,7 +1813,7 @@ Kyuki kuch rishte naam ke mohtaaj nahi hote... Woh bas dil mein apni jagah bana 
 
 Bas meri ek dua hamesha rahegi—Chahe zindagi aapko kahin bhi le jaaye, aap hamesha khush rahen, muskurate rahen...
 
-Aur kabhi agar aapko apni importance par shak ho, toh bas itna yaad kar lena—Kahin ek insaan tha, jiski sabse khoobsurat yaade bs aap thee ❤️`;
+Aur kabhi agar aapko apni importance par shak ho, toh bas itna yaad kar lijiyega—Kahin ek insaan tha, jiski sabse khoobsurat yaade bs aap thee ❤️`;
 
 /* BUTTON CLICK */
 
