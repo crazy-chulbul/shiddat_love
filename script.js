@@ -1046,6 +1046,26 @@ music.addEventListener("ended", async () => {
 // SONG 2 FINISH → SONG 1
 // =========================
 
+// music.addEventListener("ended", () => {
+//     currentMusic = secondMusic;
+//     secondMusic.currentTime = 0;
+
+//     secondMusic.play()
+//         .then(() => {
+//             musicButton.textContent = "🔊 Music OFF";
+//         })
+//         .catch(error => {
+//             console.log("Song 2 error:", error);
+//         });
+// });
+
+
+
+
+
+
+
+
 music.addEventListener("ended", () => {
     currentMusic = secondMusic;
     secondMusic.currentTime = 0;
@@ -1055,10 +1075,11 @@ music.addEventListener("ended", () => {
             musicButton.textContent = "🔊 Music OFF";
         })
         .catch(error => {
-            console.log("Song 2 error:", error);
+            console.log("Song 2 autoplay blocked:", error);
+
+            musicButton.textContent = "▶️ Tap for Song 2";
         });
 });
-
 
 
 
