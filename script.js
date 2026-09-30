@@ -949,7 +949,6 @@ cutCakeButton.addEventListener("click", () => {
 });
 
 
-
 // =========================
 // BIRTHDAY MUSIC - 2 SONGS
 // =========================
@@ -963,8 +962,6 @@ const secondMusic =
 const musicButton =
     document.getElementById("music-btn");
 
-
-// Kaunsa song abhi chal raha hai
 let currentMusic = music;
 
 
@@ -1002,65 +999,65 @@ musicButton.addEventListener("click", async () => {
 
 
 // =========================
-// SONG 1 FINISH → SONG 2
+// SONG 1 → SONG 2
 // =========================
 
-music.addEventListener("ended", async () => {
+music.addEventListener("ended", () => {
 
     currentMusic = secondMusic;
 
     secondMusic.currentTime = 0;
 
-    try {
+    secondMusic.play()
+        .then(() => {
 
-        await secondMusic.play();
+            musicButton.textContent =
+                "🔊 Music OFF";
 
-        musicButton.textContent =
-            "🔊 Music OFF";
+        })
+        .catch((error) => {
 
-    } catch (error) {
+            console.log(
+                "Song 2 autoplay blocked:",
+                error
+            );
 
-        console.log(
-            "Song 2 autoplay blocked:",
-            error
-        );
+            musicButton.textContent =
+                "▶️ Tap for Song 2";
 
-        musicButton.textContent =
-            "▶️ Tap for Song 2";
-
-    }
+        });
 
 });
 
 
 // =========================
-// SONG 2 FINISH → SONG 1
+// SONG 2 → SONG 1
 // =========================
 
-secondMusic.addEventListener("ended", async () => {
+secondMusic.addEventListener("ended", () => {
 
     currentMusic = music;
 
     music.currentTime = 0;
 
-    try {
+    music.play()
+        .then(() => {
 
-        await music.play();
+            musicButton.textContent =
+                "🔊 Music OFF";
 
-        musicButton.textContent =
-            "🔊 Music OFF";
+        })
+        .catch((error) => {
 
-    } catch (error) {
+            console.log(
+                "Song 1 autoplay blocked:",
+                error
+            );
 
-        console.log(
-            "Song 1 autoplay blocked:",
-            error
-        );
+            musicButton.textContent =
+                "▶️ Tap for Song 1";
 
-        musicButton.textContent =
-            "▶️ Tap for Song 1";
-
-    }
+        });
 
 });
 
