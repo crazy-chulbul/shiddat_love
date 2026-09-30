@@ -1144,6 +1144,11 @@ allVideos.forEach((video) => {
 // LOADING SCREEN + AUTO MUSIC
 // =========================
 
+const loadingScreen =
+    document.getElementById("loading-screen");
+
+const enterText =
+    document.querySelector(".enter-text");
 const enterText = document.querySelector(".enter-text");
 
 enterText.addEventListener("click", () => {
